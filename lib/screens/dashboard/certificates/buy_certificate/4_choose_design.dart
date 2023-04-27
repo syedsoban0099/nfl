@@ -309,7 +309,7 @@ class _ChooseDesignScreenState extends State<ChooseDesignScreen>
                                           Positioned(
                                             top: widget.type == "Digital"
                                                 ? size.height * 0.325
-                                                : size.height * 0.285,
+                                                : size.height * 0.280,
                                             right: size.width * 0.05,
                                             left: size.width * 0.05,
                                             child: Container(

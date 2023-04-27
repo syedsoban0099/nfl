@@ -126,7 +126,6 @@ class _ProfileMainScreenState extends State<ProfileMainScreen>
         img.add(_getphotos);
       }
       setLoading(false);
-     
 
       setState(() {});
     }
@@ -1437,11 +1436,17 @@ class _ProfileMainScreenState extends State<ProfileMainScreen>
                                                                 MainAxisAlignment
                                                                     .center,
                                                             children: [
-                                                              Image.asset(
-                                                                  "assets/tempImages/card_qrcode.png",
-                                                                  scale: 3.5,
-                                                                  color:
-                                                                      primaryColorB)
+                                                              SvgPicture
+                                                                  .network(
+                                                                user.qrCode
+                                                                    .toString(),
+                                                                placeholderBuilder:
+                                                                    (BuildContext
+                                                                            context) =>
+                                                                        const CircularProgressIndicator(),
+                                                                fit: BoxFit
+                                                                    .cover,
+                                                              )
                                                             ],
                                                           ),
                                                         )

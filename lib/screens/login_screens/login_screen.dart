@@ -86,8 +86,7 @@ class _LoginScreenState extends State<LoginScreen> {
         token: _password.text.trim(),
       );
       var response = await AuthenticationService().loginUser(user);
-      //  var res1 = await ApiModel().getTeam(.toString());
-      if (response is Map) {
+    if (response is Map) {
         if (response['status'].toString() == "true") {
           UserModel userModel = UserModel.fromJson(response['data']);
           print("ye mera token hai " + userModel.token!);
@@ -98,13 +97,7 @@ class _LoginScreenState extends State<LoginScreen> {
           accessToken = userModel.token!;
           teamImage = userModel.team!.img!;
           nickName=userModel.team!.nickName!;
-          
-
-          
-          // leagueImage=userModel.
-          // LocalPreference lp = LocalPreference();
-
-           await preferenceController.setUserToken(userModel.token!);
+          await preferenceController.setUserToken(userModel.token!);
           Provider.of<UserProvider>(context, listen: false).setUser(userModel);
           var res = await ApiModel().getTheme(teamId!.toString());
           if (res['status'].toString() == "true") {

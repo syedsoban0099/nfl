@@ -677,7 +677,7 @@ class UserModel with ChangeNotifier{
     gender = json['gender'];
     nationality = json['nationality'];
     city = json['city'];
-    qrCode = json['qr_code'];
+    qrCode = json['qrcode'];
     leagueName = json['league_name'];
     teamId = json['team_id'];
     type = json['type'];
@@ -715,7 +715,7 @@ class UserModel with ChangeNotifier{
     data['league_name'] = this.leagueName;
     data['team_id'] = this.teamId;
     data['type'] = this.type;
-    data['qr_code'] = this.qrCode;
+    data['qrcode'] = this.qrCode;
     data['token'] = this.token;
     data['otp'] = this.otp;
     data['user_type'] = this.userType;

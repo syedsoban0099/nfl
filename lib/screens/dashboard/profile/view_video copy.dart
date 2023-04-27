@@ -31,10 +31,42 @@ class _ViewSinglePostState extends State<ViewSinglePost> {
       isLoading = loading;
     });
   }
+   void _showDialog() {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          content: new Text("Are you sure you want to delete?"),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            ElevatedButton(
+              child: isLoading
+                  ? CircularProgressIndicator(
+                      color: Theme.of(context).primaryColor,
+                    )
+                  : Text("Delete"),
+              onPressed: () async {
+                await deletePost();
+                // Your deleteMessage method!
+              },
+            ),
+            ElevatedButton(
+              child: new Text("Close"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   deletePost() async {
     setLoading(true);
-    var res = await ApiModel().delete(widget.id);
+    var res = await ApiModel().delete(feedsPhotosingle!.id.toString());
 
     setLoading(false);
      Navigator.of(context).pop();
@@ -153,64 +185,13 @@ class _ViewSinglePostState extends State<ViewSinglePost> {
                         SizedBox(width: size.width * 0.02),
                         Expanded(
                           flex: 2,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              PopupMenuButton(
-                                icon: Icon(Icons.more_vert_sharp,
-                                    color: primaryColorW),
-                                color: textColorW,
-                                padding: EdgeInsets.all(0),
-                                elevation: 5,
-                                offset: Offset(-20.0, size.height * 0.065),
-                                
-                                onSelected: (v) {
-
-                                  switch (v) {
-                                    case 1:
-                                      {
-                                        deletePost();
-                                      }
-                                      return;
-                                    case 2:
-                                      {
-                                         deletePost();
-                                      }
-                                      return;
-                                    case 3:
-                                      {
-                                         deletePost();
-                                      }
-                                      return;
-                                  }
-                                },
-                                itemBuilder: (iContext) => [
-                                  PopupMenuItem(
-                                    value: 1,
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        InkWell(
-                                          onTap: () {
-                                            
-                                          },
-                                          child: VariableText(
-                                            text: "Delete",
-                                            fontFamily: fontMedium,
-                                            fontcolor: textColor1,
-                                            fontsize: size.height * 0.014,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
+                          child: InkWell(
+                            onTap: () {
+                            _showDialog();
+                            },
+                            child:
+                            Icon(Icons.more_vert_sharp,
+                                      color: primaryColorW) ),
                         )
                       ],
                     ),

@@ -487,12 +487,12 @@ class _FanCardScreenState extends State<FanCardScreen> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
                                           children: [
-                                          CachedNetworkImage(
-                                imageUrl: user.qrCode.toString(),
-                                fit: BoxFit.fill,
-                                errorWidget: (context, url, error) =>
-                                    Icon(Icons.error),
-                              ),
+                                         SvgPicture.network(
+ user.qrCode.toString(),
+  
+  placeholderBuilder: (BuildContext context) => const CircularProgressIndicator(),
+  fit: BoxFit.cover,
+)
                                           ],
                                         ),
                                       )

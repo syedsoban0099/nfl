@@ -23,7 +23,7 @@ class CONFIG {
   static final String getHeros = "api/heroes/";
   static final String getMoments = "api/awesome-moments/getAll";
   static final String getCity = "api/nationality/countries/city/";
-  static final String deletepost = "users/deleteUserPhoto/";
+  static final String deletepost = "api/users/deleteUserPhoto/";
   static final String getLogedUser = "api/users/getLoggedIn";
   static final String getleague = "api/leagues/getAll";
   static final String forgotPassword = "api/users/reset-password";
