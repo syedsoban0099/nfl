@@ -95,21 +95,7 @@ class _ProfileMainScreenState extends State<ProfileMainScreen>
     });
   }
 
-  // loadVideos() async {
-  //   isVideoLoading(true);
-  //   print("Loading Videos...");
-  //   _controllers.clear();
-  //   // var userDetails = ;
-  //   for (var item in userDetails.length) {
-  //     _controllers.add(VideoPlayerController.network(item.name));
-  //   }
-  //   for (var item in _controllers) {
-  //     item.setLooping(true);
-  //     item.initialize().then((_) => setState(() {}));
-  //   }
-  //   isVideoLoading(false);
-  // }
-
+ 
   TabController? tabController;
   late Future<Album> futureAlbum;
   TextEditingController AlbumTitle = TextEditingController();
@@ -131,13 +117,7 @@ class _ProfileMainScreenState extends State<ProfileMainScreen>
     }
   }
 
-  // playVideo() {
-  //   _controller = VideoPlayerController.network(
-  //       'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4')
-  //     ..initialize().then((_) {
-  //       setState(() {});
-  //     });
-  // }
+  
   List<GetVideos> getVideo = [];
   getAlbum() async {
     setLoading(true);
@@ -210,8 +190,15 @@ class _ProfileMainScreenState extends State<ProfileMainScreen>
               }));
       print(response.statusCode.toString());
       setupLoading(false);
-      customToast(response.data['data'].toString());
+      // customToast(response.data['data'].toString());
       setState(() {});
+      if (response.data['status'].toString() == "true") {
+
+        UserModel userModel = UserModel.fromJson(response.data['data']);
+        Provider.of<UserProvider>(context, listen: false).setUser(userModel);
+        customToast('uploaded successfully');
+      }
+
       return response.data;
     } catch (e) {
       print("uploadUserImage Exception: " + e.toString());
@@ -392,11 +379,7 @@ class _ProfileMainScreenState extends State<ProfileMainScreen>
     });
     super.initState();
 
-    // _controller = VideoPlayerController.network(
-    //     'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4')
-    //     ..addListener(() => setState(() {}))
-    //   ..setLooping(true)
-    //   ..initialize().then((value) =>  _controller.play());
+  
 
     tabController = TabController(length: 3, vsync: this);
     tabViewController = TabController(length: 3, vsync: this);
@@ -404,8 +387,7 @@ class _ProfileMainScreenState extends State<ProfileMainScreen>
   }
 
   Future getImage() async {
-    // var image = await ImagePicker.pickImage(source: ImageSource.gallery);
-    // var file = await MultipartFile.fromFile(imageFile!.path);
+    
     setState(() {
       selectedImage = imageFile1!;
     });
@@ -450,9 +432,7 @@ class _ProfileMainScreenState extends State<ProfileMainScreen>
     List<String> photo = Provider.of<GetPhotoProvider>(context).img;
     List<String> video1 = Provider.of<GetVideoProvider>(context).vid;
     List<String> albums1 = Provider.of<AlbumProvider>(context).albu;
-    // print("ye mera hai  ${photo.length}");
-    // img.add(photo.toString());
-
+    getUserPhotos();
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
       floatingActionButton: Padding(
@@ -829,7 +809,7 @@ class _ProfileMainScreenState extends State<ProfileMainScreen>
                           ? Container(
                               height: 1, child: LinearProgressIndicator())
                           : GridView.builder(
-                              itemCount: img.length,
+                              itemCount:user.photos!.length,
                               shrinkWrap: true,
                               physics: const BouncingScrollPhysics(),
                               gridDelegate:
@@ -842,30 +822,27 @@ class _ProfileMainScreenState extends State<ProfileMainScreen>
                                       ),
                               scrollDirection: Axis.vertical,
                               itemBuilder: (context, int index) {
+                                // var user =
+                                //     Provider.of<UserProvider>(context).user;
                                 return InkWell(
                                   onTap: () {
                                     Navigator.push(
                                         context,
                                         SwipeUpAnimationRoute(
                                             widget: ViewSinglePost(
-                                                id: img[index].id,
-                                                photo: img[index]
-                                                    .name
+                                                id: user.photos![index].id
+                                                    .toString(),
+                                                photo: user.photos![index].name
                                                     .toString())));
-                                    // openImage(img[index].name.toString(),img[index].id.toString());
                                   },
                                   child: CachedNetworkImage(
-                                    imageUrl: img[index].name.toString(),
+                                    imageUrl:
+                                        user.photos![index].name.toString(),
                                     fit: BoxFit.fitWidth,
-                                    // progressIndicatorBuilder: (context, url, downloadProgress) =>
-                                    //         CircularProgressIndicator(value: downloadProgress.progress),
                                     errorWidget: (context, url, error) =>
                                         Icon(Icons.error),
                                   ),
                                 );
-                                // Image.network(
-                                //
-                                // );
                               }),
                     ],
                   ),

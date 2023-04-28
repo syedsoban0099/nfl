@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fan_hall/controller/auth/league_api.dart';
 import 'package:fan_hall/models/get_feeds.dart';
+import 'package:fan_hall/models/user_model.dart';
 import 'package:fan_hall/providers/theme_provider.dart';
 import 'package:fan_hall/providers/userProvider.dart';
 import 'package:fan_hall/screens/dashboard/profile/profile_menu_screen.dart';
@@ -36,20 +37,21 @@ class _ViewSinglePostState extends State<ViewSinglePost> {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        // return object of type Dialog
+      
         return AlertDialog(
           content: new Text("Are you sure you want to delete?"),
           actions: <Widget>[
-            // usually buttons at the bottom of the dialog
+           
             ElevatedButton(
               child: isLoading
                   ? CircularProgressIndicator(
                       color: Theme.of(context).primaryColor,
                     )
                   : Text("Delete"),
-              onPressed: () async {
+              onPressed: ()  async{
                 await deletePost();
-                // Your deleteMessage method!
+                 Navigator.of(context).pop();
+               
               },
             ),
             ElevatedButton(
@@ -67,6 +69,11 @@ class _ViewSinglePostState extends State<ViewSinglePost> {
   deletePost() async {
     setLoading(true);
     var res = await ApiModel().delete(feedsPhotosingle!.id.toString());
+     if (res['status'].toString() == "true") {
+
+        UserModel userModel = UserModel.fromJson(res['data']);
+        Provider.of<UserProvider>(context, listen: false).setUser(userModel);
+      }
 
     setLoading(false);
      Navigator.of(context).pop();

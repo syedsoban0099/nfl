@@ -839,7 +839,7 @@ class League {
   int? id;
   String? img;
   String? name;
-  Null? active;
+  String? active;
   String? createdAt;
   String? updatedAt;
 

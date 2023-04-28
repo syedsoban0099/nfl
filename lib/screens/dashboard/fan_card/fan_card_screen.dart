@@ -354,8 +354,18 @@ class _FanCardScreenState extends State<FanCardScreen> {
                                       width: size.width * 0.15,
                                       fit: BoxFit.fill,
                                     )),
-                                Image.network(
-                                  user.team!.category!.league!.img!,
+                              user.nationality=="Canadian"?  Image.asset(
+                                  "assets/icons/canadaflag.png",
+                                  height: size.height * 0.04,
+                                  width: size.width * 0.12,
+                                  fit: BoxFit.fill,
+                                ):user.nationality=="American"?Image.asset(
+                                  "assets/icons/usaflag.png",
+                                  height: size.height * 0.04,
+                                  width: size.width * 0.12,
+                                  fit: BoxFit.fill,
+                                ):Image.asset(
+                                  "assets/icons/mexicoflag.png",
                                   height: size.height * 0.04,
                                   width: size.width * 0.12,
                                   fit: BoxFit.fill,
@@ -380,7 +390,7 @@ class _FanCardScreenState extends State<FanCardScreen> {
                                     ),
                                     VariableText(
                                       text:
-                                          "${user.city} ${user.nationality}/2023",
+                                          "${user.city} ${user.nationality=="Canadian"?",Canada ":user.nationality=="American"?",USA ":",Mexico "}/2023",
                                       fontsize: size.height * 0.012,
                                       fontcolor:
                                           Theme.of(context).iconTheme.color,

@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:fan_hall/controller/config.dart';
+import 'package:fan_hall/models/user_model.dart';
 import 'package:fan_hall/providers/theme_provider.dart';
 import 'package:fan_hall/providers/userProvider.dart';
 import 'package:fan_hall/screens/dashboard/profile/profile_main_screen.dart';
@@ -83,9 +84,15 @@ class _Post_FeedsState extends State<Post_Feeds> {
       image_post = null;
       Navigator.pop(context, SwipeUpAnimationRoute(widget: Post_Feeds()));
 
-      customToast(response.data['data'].toString());
+      setupLoading(false);
+      // customToast(response.data['data'].toString());
       setState(() {});
+      if (response.data['status'].toString() == "true") {
 
+        UserModel userModel = UserModel.fromJson(response.data['data']);
+        Provider.of<UserProvider>(context, listen: false).setUser(userModel);
+        customToast('uploaded successfully');
+      }
       return response.data;
     } catch (e) {
       print("uploadUserImage Exception: " + e.toString());

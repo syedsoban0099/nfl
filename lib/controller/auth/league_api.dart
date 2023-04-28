@@ -526,17 +526,20 @@ class ApiModel {
   }
     Future<dynamic> delete(String id) async {
     final url = Uri.parse(CONFIG.domain + CONFIG.deletepost + id);
+    print(url);
     try {
-      var response = await http.get(url);
-
-      var res = convert.jsonDecode(response.body);
+      var response = await http.get(url,
+          headers: <String, String>{"Authorization": "Bearer " + accessToken!});
+      print(response.statusCode.toString());
       if (response.statusCode == 200) {
-        return res;
+        var data = jsonDecode(utf8.decode(response.bodyBytes));
+        return data;
       } else {
-        print(response.reasonPhrase);
+        return null;
       }
     } catch (e) {
-      print(e);
+      print("getChatList Exception: " + e.toString());
+      return null;
     }
   }
   Future<dynamic> getcities(String id) async {
