@@ -253,9 +253,22 @@ class _UserProfileImageScreenState extends State<UserProfileImageScreen> {
                                         SizedBox(
                                           height: size.height * 0.04,
                                           child: leagueImage != null
-                                              ? Image.network(
-                                                  leagueImage.toString(),
-                                                  height: size.height * 0.50)
+                                              ?  selectedNationality=="Canadian"?  Image.asset(
+                                  "assets/icons/canadaflag.png",
+                                  height: size.height * 0.04,
+                                  width: size.width * 0.12,
+                                  fit: BoxFit.fill,
+                                ):selectedNationality=="American"?Image.asset(
+                                  "assets/icons/usaflag.png",
+                                  height: size.height * 0.04,
+                                  width: size.width * 0.12,
+                                  fit: BoxFit.fill,
+                                ):Image.asset(
+                                  "assets/icons/mexicoflag.png",
+                                  height: size.height * 0.04,
+                                  width: size.width * 0.12,
+                                  fit: BoxFit.fill,
+                                )
                                               : Container(
                                                   width: size.width * 0.05,
                                                   child: Center(
