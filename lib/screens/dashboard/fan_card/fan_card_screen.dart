@@ -148,7 +148,7 @@ class _FanCardScreenState extends State<FanCardScreen> {
                                                   BorderRadius.circular(30),
                                               child: CachedNetworkImage(
                                                 imageUrl: user.cardImg!,
-                                                 fit: BoxFit.cover,
+                                                fit: BoxFit.cover,
                                                 imageBuilder:
                                                     (context, imageProvider) =>
                                                         Container(
@@ -194,15 +194,16 @@ class _FanCardScreenState extends State<FanCardScreen> {
                                     onTap: () {},
                                     child: Container(
                                       decoration: BoxDecoration(
-                                          color: HexColor(primarycolor.shareBtnBg!),
+                                          color: HexColor(
+                                              primarycolor.shareBtnBg!),
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(200))),
                                       child: Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: SvgPicture.asset(
                                           'assets/icons/share1.svg',
-                                          color:
-                                            HexColor(primarycolor.shareBtnColor!),
+                                          color: HexColor(
+                                              primarycolor.shareBtnColor!),
                                           width: size.width * 0.002,
                                           height: size.height * 0.02,
                                         ),
@@ -260,7 +261,7 @@ class _FanCardScreenState extends State<FanCardScreen> {
                                   SizedBox(
                                     height: size.height * 0.09,
                                     child: teamImage != null
-                                        ? Image.network( user.team!.img!,
+                                        ? Image.network(user.team!.img!,
                                             height: size.height)
                                         : Container(
                                             child: Center(
@@ -305,7 +306,8 @@ class _FanCardScreenState extends State<FanCardScreen> {
                             Align(
                               alignment: Alignment.center,
                               child: VariableText(
-                                text: "${'${user.team!.name!.toUpperCase()} ${user.team!.nickName!.toUpperCase()} FAN'}",
+                                text:
+                                    "${'${user.team!.name!.toUpperCase()} ${user.team!.nickName!.toUpperCase()} FAN'}",
                                 fontsize: size.height * 0.011,
                                 fontcolor: Theme.of(context).iconTheme.color,
                                 fontFamily: fontRegular,
@@ -341,8 +343,8 @@ class _FanCardScreenState extends State<FanCardScreen> {
                                   onTap: () {},
                                   child: Image.network(
                                     user.team!.img!,
-                                    height: size.height * 0.07,
-                                    width: size.width * 0.15,
+                                    height: size.height * 0.065,
+                                    width: size.width * 0.14,
                                     fit: BoxFit.fill,
                                   ),
                                 ),
@@ -350,26 +352,30 @@ class _FanCardScreenState extends State<FanCardScreen> {
                                     borderRadius: BorderRadius.circular(100),
                                     child: Image.network(
                                       user.img!,
-                                      height: size.height * 0.07,
-                                      width: size.width * 0.15,
+                                      height: size.height * 0.08,
+                                      width: size.width * 0.17,
                                       fit: BoxFit.fill,
                                     )),
-                              user.nationality=="Canadian"?  Image.asset(
-                                  "assets/icons/canadaflag.png",
-                                  height: size.height * 0.04,
-                                  width: size.width * 0.12,
-                                  fit: BoxFit.fill,
-                                ):user.nationality=="American"?Image.asset(
-                                  "assets/icons/usaflag.png",
-                                  height: size.height * 0.04,
-                                  width: size.width * 0.12,
-                                  fit: BoxFit.fill,
-                                ):Image.asset(
-                                  "assets/icons/mexicoflag.png",
-                                  height: size.height * 0.04,
-                                  width: size.width * 0.12,
-                                  fit: BoxFit.fill,
-                                ),
+                                user.nationality == "Canadian"
+                                    ? Image.asset(
+                                        "assets/icons/canadaflag.png",
+                                        height: size.height * 0.04,
+                                        width: size.width * 0.12,
+                                        fit: BoxFit.fill,
+                                      )
+                                    : user.nationality == "American"
+                                        ? Image.asset(
+                                            "assets/icons/usaflag.png",
+                                            height: size.height * 0.04,
+                                            width: size.width * 0.12,
+                                            fit: BoxFit.fill,
+                                          )
+                                        : Image.asset(
+                                            "assets/icons/mexicoflag.png",
+                                            height: size.height * 0.04,
+                                            width: size.width * 0.12,
+                                            fit: BoxFit.fill,
+                                          ),
                               ],
                             ),
                             SizedBox(height: size.height * 0.01),
@@ -390,7 +396,7 @@ class _FanCardScreenState extends State<FanCardScreen> {
                                     ),
                                     VariableText(
                                       text:
-                                          "${user.city} ${user.nationality=="Canadian"?",Canada ":user.nationality=="American"?",USA ":",Mexico "}/2023",
+                                          "${user.city}, ${user.nationality == "Canadian" ? "Canada " : user.nationality == "American" ? "USA " : "Mexico "}/ 2023",
                                       fontsize: size.height * 0.012,
                                       fontcolor:
                                           Theme.of(context).iconTheme.color,
@@ -410,7 +416,9 @@ class _FanCardScreenState extends State<FanCardScreen> {
                             ///buttons
                             Padding(
                               padding: EdgeInsets.symmetric(
-                                  horizontal: size.width * 0.04),
+                                  horizontal: size.width * 0.04,
+                                  
+                                  ),
                               child: Row(
                                 children: [
                                   Expanded(
@@ -461,7 +469,7 @@ class _FanCardScreenState extends State<FanCardScreen> {
                               child: Padding(
                                 padding: EdgeInsets.symmetric(
                                     horizontal: size.width * 0.08,
-                                    vertical: size.height * 0.02),
+                                    vertical: size.height * 0.035),
                                 child: Container(
                                   decoration: BoxDecoration(
                                       color: primaryColorW,
@@ -493,17 +501,23 @@ class _FanCardScreenState extends State<FanCardScreen> {
                                         ),
                                       ),
                                       Expanded(
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                         SvgPicture.network(
- user.qrCode.toString(),
-  
-  placeholderBuilder: (BuildContext context) => const CircularProgressIndicator(),
-  fit: BoxFit.cover,
-)
-                                          ],
+                                        
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(20),
+                                          child: SizedBox(
+                                            height: size.height*0.15,
+                                            width: size.width*0.5,
+                                            child: SvgPicture.network(
+                                              
+                                            "https://fanhall.app/${user.qrCode}",
+                                                                                 
+                                            
+                                              placeholderBuilder: (BuildContext
+                                                      context) =>
+                                                  const CircularProgressIndicator(),
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
                                         ),
                                       )
                                     ],

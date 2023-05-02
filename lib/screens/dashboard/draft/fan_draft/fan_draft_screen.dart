@@ -25,7 +25,7 @@ class _FanDraftScreenState extends State<FanDraftScreen> {
   List<String> draftTypes = ["ALL", "NFL", "STEELERS", "SURVEYS"];
   int selectedType = 0;
   bool hasSubscription = false;
-  String Charges="490";
+  String Charges="4.90";
 List<ArticleModel> Article= [];
 Map<String, dynamic>? paymentIntent;
 

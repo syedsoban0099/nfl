@@ -49,10 +49,7 @@ class _SplashScreenState extends State<SplashScreen> {
         continue;
       } else if (response) {
         getlocation();
-        // Navigator.pushReplacement(
-        //     context,
-        //     SwipeLeftAnimationRoute(
-        //         milliseconds: 200, widget: const MainScreen()));
+      
 
         break;
       }

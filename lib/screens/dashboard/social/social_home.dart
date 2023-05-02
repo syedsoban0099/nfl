@@ -493,64 +493,66 @@ class _SocialHomeScreenState extends State<SocialHomeScreen>
                     ? CircularProgressIndicator(
                         color: Theme.of(context).primaryColor,
                       )
-                    : Container(
-                        height: size.height * 0.5,
-                        child:
-                            //          GoogleMap(
-                            //   initialCameraPosition: CameraPosition(
-                            //     target: LatLng(52.1223, -0.2225233),
-                            //     zoom: 15,
-                            //   ),
-                            //   markers: _markers,
-                            // ),
-                            GoogleMap(
-                                mapType: MapType.normal,
-                                initialCameraPosition: fromEventDetail == true
-                                    ? CameraPosition(
-                                        target: LatLng(
-                                            double.parse(lat!.toString()),
-                                            double.parse(long!.toString())),
-                                        zoom: 11.4746,
-                                      )
-                                    : _kGooglePlex,
-                                markers: Set.from(fromEventDetail == true
-                                    ? allMarkers
-                                    : fromEventMarkers),
-                                onMapCreated: (GoogleMapController controller) {
-                                  _controllerMap.complete(controller);
-                                  Future.delayed(const Duration(seconds: 1))
-                                      .then((value) {
-                                    addMarkers();
-                                  });
-                                }
-                                // markers:
-                                //     Set.from(fromEventDetail==true? fromEventMarkers : allMarkers),
-                                // onMapCreated: (GoogleMapController controller) {
-                                //   _controllerMap.complete(controller);
-                                //   Future.delayed(const Duration(seconds: 1)).then((value) {
-                                //     addMarkers();
-                                //   });
-                                // },
-                                )
-
-//                    GoogleMap(
-//   onMapCreated: _onMapCreated,
-//   initialCameraPosition: CameraPosition(
-//     target:LatLng(lat!,long!),
-//     zoom: 11.0,
-//   ),
-//   markers: {
-//                 Marker(
-//                   icon:BitmapDescriptor.defaultMarker,
-//                   markerId: MarkerId(user.nationality!),
-//                   position: LatLng(lat!,long!),
-//                   infoWindow: InfoWindow(
-//                     title: user.name,
-//                   ),
-//                 ),
-//               },
-// ),
-                        )
+                    : Expanded(
+                      child: Container(
+                         
+                          child:
+                              //          GoogleMap(
+                              //   initialCameraPosition: CameraPosition(
+                              //     target: LatLng(52.1223, -0.2225233),
+                              //     zoom: 15,
+                              //   ),
+                              //   markers: _markers,
+                              // ),
+                              GoogleMap(
+                                  mapType: MapType.normal,
+                                  initialCameraPosition: fromEventDetail == true
+                                      ? CameraPosition(
+                                          target: LatLng(
+                                              double.parse(lat!.toString()),
+                                              double.parse(long!.toString())),
+                                          zoom: 11.4746,
+                                        )
+                                      : _kGooglePlex,
+                                  markers: Set.from(fromEventDetail == true
+                                      ? allMarkers
+                                      : fromEventMarkers),
+                                  onMapCreated: (GoogleMapController controller) {
+                                    _controllerMap.complete(controller);
+                                    Future.delayed(const Duration(seconds: 1))
+                                        .then((value) {
+                                      addMarkers();
+                                    });
+                                  }
+                                  // markers:
+                                  //     Set.from(fromEventDetail==true? fromEventMarkers : allMarkers),
+                                  // onMapCreated: (GoogleMapController controller) {
+                                  //   _controllerMap.complete(controller);
+                                  //   Future.delayed(const Duration(seconds: 1)).then((value) {
+                                  //     addMarkers();
+                                  //   });
+                                  // },
+                                  )
+                    
+                    //                    GoogleMap(
+                    //   onMapCreated: _onMapCreated,
+                    //   initialCameraPosition: CameraPosition(
+                    //     target:LatLng(lat!,long!),
+                    //     zoom: 11.0,
+                    //   ),
+                    //   markers: {
+                    //                 Marker(
+                    //                   icon:BitmapDescriptor.defaultMarker,
+                    //                   markerId: MarkerId(user.nationality!),
+                    //                   position: LatLng(lat!,long!),
+                    //                   infoWindow: InfoWindow(
+                    //                     title: user.name,
+                    //                   ),
+                    //                 ),
+                    //               },
+                    // ),
+                          ),
+                    )
                 : isLoading
                     ? CircularProgressIndicator(
                         color: Theme.of(context).primaryColor,

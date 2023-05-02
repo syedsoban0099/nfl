@@ -160,21 +160,19 @@ class _singleVideoState extends State<singleVideo> {
                                       ),
                                     ),
                                     SizedBox(width: size.width * 0.02),
-                                    Expanded(
-                                      child: VariableText(
-                                        text:
-                                            user
-                                            .username
-                                            .toString()
-                                            ,
-                                        fontsize: size.height * 0.014,
-                                        fontcolor: primaryColorW,
-                                        fontFamily: fontMedium,
-                                        weight: FontWeight.w400,
-                                        textAlign: TextAlign.start,
-                                        max_lines: 1,
-                                        underlined: true,
-                                      ),
+                                    VariableText(
+                                      text:
+                                          user
+                                          .username
+                                          .toString()
+                                          ,
+                                      fontsize: size.height * 0.014,
+                                      fontcolor: primaryColorW,
+                                      fontFamily: fontMedium,
+                                      weight: FontWeight.w400,
+                                      textAlign: TextAlign.start,
+                                      max_lines: 1,
+                                      underlined: true,
                                     )
                                   ],
                                 ),
@@ -189,17 +187,15 @@ class _singleVideoState extends State<singleVideo> {
                                                   .isInitialized
                                               ? Container(
                                                  height: size.height *0.5,
-                                                child: Expanded(
-                                                  child: AspectRatio(
-                                                      aspectRatio:
-                                                          _controller
-                                                              .value
-                                                              .aspectRatio,
-                                                      child: VideoPlayer(
+                                                child: AspectRatio(
+                                                    aspectRatio:
                                                         _controller
-                                                      ),
+                                                            .value
+                                                            .aspectRatio,
+                                                    child: VideoPlayer(
+                                                      _controller
                                                     ),
-                                                ),
+                                                  ),
                                               )
                                               : Container( height: size.height *0.5,),
                                           Center(
@@ -277,19 +273,17 @@ class _singleVideoState extends State<singleVideo> {
                                     SizedBox(height: size.height * 0.015),
                                     Row(
                                       children: [
-                                        Expanded(
-                                          child: VariableText(
-                                            text:isLoading?"":"",
-                                            // feedsPhotosingle!
-                                            //     .caption
-                                            //     .toString(),
-                                            fontsize: size.height * 0.014,
-                                            fontcolor: primaryColorW,
-                                            fontFamily: fontRegular,
-                                            weight: FontWeight.w400,
-                                            textAlign: TextAlign.start,
-                                            max_lines: 10,
-                                          ),
+                                        VariableText(
+                                          text:isLoading?"":"",
+                                          // feedsPhotosingle!
+                                          //     .caption
+                                          //     .toString(),
+                                          fontsize: size.height * 0.014,
+                                          fontcolor: primaryColorW,
+                                          fontFamily: fontRegular,
+                                          weight: FontWeight.w400,
+                                          textAlign: TextAlign.start,
+                                          max_lines: 10,
                                         ),
                                       ],
                                     ),
@@ -297,82 +291,19 @@ class _singleVideoState extends State<singleVideo> {
                                     isLoading?CircularProgressIndicator(color:HexColor(color.primaryColor!),):
                                     Row(
                                       children: [
-                                        Expanded(
-                                          child: VariableText(
-                                            text: 'Ver comentarios',
-                                            fontsize: size.height * 0.014,
-                                            fontcolor: textColor3,
-                                            fontFamily: fontRegular,
-                                            weight: FontWeight.w400,
-                                            textAlign: TextAlign.start,
-                                            max_lines: 10,
-                                          ),
+                                        VariableText(
+                                          text: 'Ver comentarios',
+                                          fontsize: size.height * 0.014,
+                                          fontcolor: textColor3,
+                                          fontFamily: fontRegular,
+                                          weight: FontWeight.w400,
+                                          textAlign: TextAlign.start,
+                                          max_lines: 10,
                                         ),
                                       ],
                                     ),
                                        SizedBox(height: size.height * 0.015),
-                                    // Container(
-                                    //   height: size.height * 0.15,
-                                    //   child: ListView.builder(
-                                    //       itemCount:
-                                    //           feedsPhotosingle!.comment!.length,
-                                    //       shrinkWrap: true,
-                                    //       physics: ScrollPhysics(),
-                                    //       itemBuilder: (_, i) {
-                                    //         return ListTile(
-                                    //             leading: ClipRRect(
-                                    //               borderRadius:
-                                    //                   BorderRadius.circular(30),
-                                    //               child:ClipRRect(
-                                    //   borderRadius: BorderRadius.circular(200),
-                                    //   child: SizedBox(
-                                    //     height: size.height * 0.04,
-                                    //     width: size.width * 0.08,
-                                    //     child: Container(
-                                    //       height: size.height * 0.5,
-                                    //       child: CachedNetworkImage(
-                                    //         imageUrl:isLoading?"": feedsPhotosingle!
-                                    //             .comment![i].user!
-                                    //             .img!
-                                    //             .toString(),
-                                    //         fit: BoxFit.fitWidth,
-             
-                                    //         // progressIndicatorBuilder: (context, url, downloadProgress) =>
-                                    //         //         CircularProgressIndicator(value: downloadProgress.progress),
-                                    //         errorWidget: (context, url, error) =>
-                                    //             Icon(Icons.error),
-                                    //       ),
-                                    //     ),
-                                    //   ),
-                                    // )
-                                    //             ),
-                                    //             title: VariableText(
-                                    //               text:isLoading?"": feedsPhotosingle!
-                                    //                   .comment![i]
-                                    //                   .user!.username
-                                    //                   .toString(),
-                                    //               fontsize: size.height * 0.014,
-                                    //               fontcolor: primaryColorW,
-                                    //               fontFamily: fontMedium,
-                                    //               weight: FontWeight.w400,
-                                    //               textAlign: TextAlign.start,
-                                    //               max_lines: 1,
-                                    //             ),
-                                    //             subtitle: VariableText(
-                                    //               text: isLoading?"": feedsPhotosingle!
-                                    //                   .comment![i]
-                                    //                   .comment
-                                    //                   .toString(),
-                                    //               fontsize: size.height * 0.010,
-                                    //               fontcolor: textColorG,
-                                    //               fontFamily: fontMedium,
-                                    //               weight: FontWeight.w300,
-                                    //               textAlign: TextAlign.start,
-                                    //               max_lines: 10,
-                                    //             ),
-                                    //             );
-                                    //       }),
-                                    // )
+                                   
                                     ],
                                     ))]))));}
 

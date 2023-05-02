@@ -2,7 +2,9 @@ import 'dart:async';
 
 import 'package:fan_hall/controller/auth/league_api.dart';
 import 'package:fan_hall/models/getAllUser.dart';
+import 'package:fan_hall/models/getYear.dart';
 import 'package:fan_hall/models/score_model.dart';
+import 'package:fan_hall/models/week_mode.dart';
 import 'package:fan_hall/widgets/constants.dart';
 import 'package:fan_hall/widgets/style.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +27,9 @@ class _ScoresScreenState extends State<ScoresScreen> {
   String? selectedweek;
  bool isLoading = false;
  List<ScoreModel> allteamsScores = [];
- List<String> allyears = ["2022"];
+List<YearModel> Scoresyear = [];
+List<WeekModel> Scoresweek = [];
+ List<String> allyears = [];
  List<String> allweeks = ["Week 18"];
   int indexx = 0;
   DateFormat chatTimeFormatter = DateFormat("hh:mm");
@@ -40,10 +44,10 @@ class _ScoresScreenState extends State<ScoresScreen> {
 
 
 
-   getteamScorebyweek(String week) async {
+   getteamScorebyweek(String selectedyears,String week,) async {
     setLoading(true);
     // var userDetails = Provider.of<UserModel>(context, listen: false);
-    var response = await ApiModel.getScorebyweek(accessToken.toString(),week.toString());
+    var response = await ApiModel.getScorebyweek(accessToken.toString(),week.toString(),selectedyears.toString());
     if (response != null) {
       allteamsScores.clear();
       if (response['status']) {
@@ -63,8 +67,60 @@ class _ScoresScreenState extends State<ScoresScreen> {
           msg: "Try again later", toastLength: Toast.LENGTH_SHORT);
     }
   }
+  getyear() async {
+    setLoading(true);
+    // var userDetails = Provider.of<UserModel>(context, listen: false);
+    var response = await ApiModel.getyear();
+    if (response != null) {
+    //  Scoresyear.clear();
+      allyears.clear();
+      YearModel? Scoresyear ;
+      if (response['status']) {
+        for (var item in response['data']) {
 
+          Scoresyear =YearModel.fromJson(item);
+          allyears.add(Scoresyear.year.toString());
+        }
+      
+      }
+    
+      setLoading(false);
+     
+    } else {
+      Scoresyear.clear();
+      allyears.clear();
+      setLoading(false);
+      Fluttertoast.showToast(
+          msg: "Try again later", toastLength: Toast.LENGTH_SHORT);
+    }
+  }
+getweek() async {
+    setLoading(true);
+   
+    var response = await ApiModel.getweek();
+   if (response != null) {
+   
+      allweeks.clear();
+      WeekModel? Scoresweek ;
+      if (response['status']) {
+        for (var item in response['data']) {
 
+          Scoresweek =WeekModel.fromJson(item);
+          allweeks.add(Scoresweek.week.toString());
+        }
+      
+      }
+    
+      setLoading(false);
+     
+    } else {
+      Scoresweek.clear();
+      allweeks.clear();
+      setLoading(false);
+      Fluttertoast.showToast(
+          msg: "Try again later", toastLength: Toast.LENGTH_SHORT);
+    }
+  }
    getteamScore() async {
     setLoading(true);
     // var userDetails = Provider.of<UserModel>(context, listen: false);
@@ -117,7 +173,8 @@ class _ScoresScreenState extends State<ScoresScreen> {
   @override
   void initState() {
     // TODO: implement initState
-    
+    getyear();
+    getweek();
     getteamScore();
     super.initState();
 
@@ -126,7 +183,7 @@ class _ScoresScreenState extends State<ScoresScreen> {
     var duration = interval;
     _timer = Timer.periodic(duration, (timer) {
       if (mounted) {
-        updateScoreList();
+      // getteamScorebyweek(selectedyears.toString(),selectedweek.toString());
       }
     });
   }
@@ -197,6 +254,7 @@ class _ScoresScreenState extends State<ScoresScreen> {
                                       setState(() {
                                         selectedyears = value;
                                       });
+                                        getteamScorebyweek(selectedyears.toString(),selectedweek.toString());
                                     },
                                     style: TextStyle(
                                         fontSize: size.height * 0.017,
@@ -268,18 +326,10 @@ class _ScoresScreenState extends State<ScoresScreen> {
                                     onChanged: (String? value)async{
                                       setState(() {
                                         selectedweek = value;
-                                        // allUserList2.clear();
+                                       
                                       });
-                                      getteamScorebyweek(selectedweek.toString());
-                                    //  if(selectedTeam==user.team!.name){
-                                    //  await getUserListbyteam(teamId!);
-                                    //  print(teamId);
-                                    //  }if(selectedTeam=="All NFL teams"){
-                                    //   await  getUserList();
-                                    //  }
-                                    //  else{
-                                    //  await getUserList();
-                                    //  }
+                                      getteamScorebyweek(selectedyears.toString(),selectedweek.toString());
+                                   
                                      
 
                                     },

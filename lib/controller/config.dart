@@ -8,6 +8,8 @@ class CONFIG {
   static final String getSeasons = "api/seasons/getByTeam/";
   static final String getSurvey = "api/draft/getSurvey";
   static final String getarticle = "api/draft/getArticle";
+  static final String getYear = "api/score/getYear";
+  static final String getweek = "api/score/getWeek";
   static final String getCerti = "api/certificates/getByType/";
    static final String getShowcase = "api/certificates/getFanShowCase";
   static final String getCertiorder = "api/certificates/getCertificateOrder";

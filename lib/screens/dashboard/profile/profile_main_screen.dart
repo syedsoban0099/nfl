@@ -237,8 +237,16 @@ class _ProfileMainScreenState extends State<ProfileMainScreen>
                 "Authorization": "Bearer " + token!.toString()
               }));
       print(response.statusCode.toString());
-      setupLoading(false);
-      customToast(response.data.toString());
+       setupLoading(false);
+      // customToast(response.data['data'].toString());
+      setState(() {});
+      if (response.data['status'].toString() == "true") {
+
+        UserModel userModel = UserModel.fromJson(response.data['data']);
+        Provider.of<UserProvider>(context, listen: false).setUser(userModel);
+        customToast('uploaded successfully');
+      }
+
       return response.data;
     } catch (e) {
       customToast("uploadUserVideo Exception: " + e.toString());
@@ -1349,114 +1357,83 @@ class _ProfileMainScreenState extends State<ProfileMainScreen>
                                                 ),
                                               ),
                                               Expanded(
-                                                child: Padding(
-                                                  padding: EdgeInsets.symmetric(
-                                                      horizontal:
-                                                          size.width * 0.08,
-                                                      vertical:
-                                                          size.height * 0.02),
-                                                  child: Container(
-                                                    decoration: BoxDecoration(
-                                                        color: primaryColorW,
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(25)),
-                                                    child: Column(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Container(
-                                                          padding: EdgeInsets
-                                                              .symmetric(
-                                                                  vertical: size
-                                                                          .height *
-                                                                      0.015),
-                                                          decoration: BoxDecoration(
-                                                              color:
-                                                                  primaryColorB,
-                                                              borderRadius: BorderRadius.only(
-                                                                  topLeft: Radius
-                                                                      .circular(
-                                                                          25),
-                                                                  topRight: Radius
-                                                                      .circular(
-                                                                          25))),
-                                                          child: Row(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
-                                                            children: [
-                                                              VariableText(
-                                                                text:
-                                                                    "@${user.username}",
-                                                                fontsize:
-                                                                    size.height *
-                                                                        0.014,
-                                                                fontcolor:
-                                                                    primaryColorW,
-                                                                fontFamily:
-                                                                    fontRegular,
-                                                                weight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                                textAlign:
-                                                                    TextAlign
-                                                                        .center,
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                        Expanded(
-                                                          child: Column(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
-                                                            children: [
-                                                              SvgPicture
-                                                                  .network(
-                                                                user.qrCode
-                                                                    .toString(),
-                                                                placeholderBuilder:
-                                                                    (BuildContext
-                                                                            context) =>
-                                                                        const CircularProgressIndicator(),
-                                                                fit: BoxFit
-                                                                    .cover,
-                                                              )
-                                                            ],
-                                                          ),
-                                                        )
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: EdgeInsets.symmetric(
-                                                    horizontal:
-                                                        size.width * 0.02),
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    Expanded(
-                                                      child: VariableText(
-                                                        text: user.userId!
-                                                            .toUpperCase(),
-                                                        fontsize:
-                                                            size.height * 0.010,
-                                                        fontcolor:
-                                                            Theme.of(context)
-                                                                .iconTheme
-                                                                .color,
-                                                        fontFamily: fontRegular,
-                                                        weight: FontWeight.w500,
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        max_lines: 2,
-                                                      ),
-                                                    ),
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: size.width * 0.08,
+                                    vertical: size.height * 0.035),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      color: primaryColorW,
+                                      borderRadius: BorderRadius.circular(25)),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: size.height * 0.015),
+                                        decoration: BoxDecoration(
+                                            color: primaryColorB,
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(25),
+                                                topRight: Radius.circular(25))),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            VariableText(
+                                              text: "@${user.username}",
+                                              fontsize: size.height * 0.014,
+                                              fontcolor: primaryColorW,
+                                              fontFamily: fontRegular,
+                                              weight: FontWeight.w500,
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Expanded(
+                                        
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(20),
+                                          child: SizedBox(
+                                            height: size.height*0.15,
+                                            width: size.width*0.5,
+                                            child: SvgPicture.network(
+                                              
+                                            "https://fanhall.app/${user.qrCode}",
+                                                                                 
+                                            
+                                              placeholderBuilder: (BuildContext
+                                                      context) =>
+                                                  const CircularProgressIndicator(),
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: size.width * 0.02),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Expanded(
+                                    child: VariableText(
+                                      text: user.userId!.toUpperCase(),
+                                      fontsize: size.height * 0.010,
+                                      fontcolor:
+                                          Theme.of(context).iconTheme.color,
+                                      fontFamily: fontRegular,
+                                      weight: FontWeight.w500,
+                                      textAlign: TextAlign.center,
+                                      max_lines: 2,
+                                    ),
+                                  )
                                                   ],
                                                 ),
                                               ),
@@ -1491,7 +1468,7 @@ class _ProfileMainScreenState extends State<ProfileMainScreen>
                             loadingVideo
                                 ? CircularProgressIndicator()
                                 : GridView.builder(
-                                    itemCount: _controllers.length,
+                                    itemCount: user.vclips!.length,
                                     gridDelegate:
                                         SliverGridDelegateWithFixedCrossAxisCount(
                                       crossAxisCount: 2,
@@ -1507,8 +1484,8 @@ class _ProfileMainScreenState extends State<ProfileMainScreen>
                                               context,
                                               SwipeUpAnimationRoute(
                                                   widget: singleVideo(
-                                                      id: "114",
-                                                      video: _controllers[index]
+                                                      id: user.vclips![index].id,
+                                                      video: user.vclips![index].name
                                                           .toString())));
                                         },
                                         child: Stack(
@@ -1516,21 +1493,23 @@ class _ProfileMainScreenState extends State<ProfileMainScreen>
                                             Container(
                                               height: size.height * 2,
                                               color: Colors.grey,
+                                              child: Image.network("http://icons.iconarchive.com/icons/thiago-silva/palm/256/Videos-icon.png"),
+
                                             ),
-                                            ElevatedButton(
-                                              onPressed: () {
-                                                // setState(() {
-                                                //   _controllers[index]
-                                                //           .value
-                                                //           .isPlaying
-                                                //       ? _controllers[index]
-                                                //           .pause()
-                                                //       : _controllers[index]
-                                                //           .play();
-                                                // });
-                                              },
-                                              child: Icon(Icons.play_arrow),
-                                            )
+                                            // ElevatedButton(
+                                            //   onPressed: () {
+                                            //     // setState(() {
+                                            //     //   _controllers[index]
+                                            //     //           .value
+                                            //     //           .isPlaying
+                                            //     //       ? _controllers[index]
+                                            //     //           .pause()
+                                            //     //       : _controllers[index]
+                                            //     //           .play();
+                                            //     // });
+                                            //   },
+                                            //   child: Icon(Icons.play_arrow),
+                                            // )
                                           ],
                                         ),
                                       );

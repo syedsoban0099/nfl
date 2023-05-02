@@ -39,7 +39,7 @@ class _NewsfeedScreenState extends State<NewsfeedScreen> {
       isLoading = loading;
     });
   }
-
+  
   bool setlike = false;
 
   islike(bool loading) {

@@ -625,16 +625,18 @@ class UserModel with ChangeNotifier{
   String? type;
   String? token;
   String? otp;
-  String? qrCode;
   String? userType;
   String? longitude;
   String? latitude;
+  String? qrCode;
+  String? joiningDate;
   String? createdAt;
   String? updatedAt;
-  String? joiningDate;
+  String? qrcode;
   Team? team;
-
   List<Photos>? photos;
+  
+  List<Vclips>? vclips;
 
   UserModel(
       {this.id,
@@ -654,15 +656,18 @@ class UserModel with ChangeNotifier{
       this.type,
       this.token,
       this.otp,
-      this.qrCode,
       this.userType,
       this.longitude,
       this.latitude,
+      this.qrCode,
+      this.joiningDate,
       this.createdAt,
       this.updatedAt,
-      this.joiningDate,
+      this.qrcode,
       this.team,
-      this.photos});
+      this.photos,
+     
+      this.vclips});
 
   UserModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -677,7 +682,6 @@ class UserModel with ChangeNotifier{
     gender = json['gender'];
     nationality = json['nationality'];
     city = json['city'];
-    qrCode = json['qrcode'];
     leagueName = json['league_name'];
     teamId = json['team_id'];
     type = json['type'];
@@ -686,14 +690,23 @@ class UserModel with ChangeNotifier{
     userType = json['user_type'];
     longitude = json['longitude'];
     latitude = json['latitude'];
+    qrCode = json['qr_code'];
+    joiningDate = json['joining_date'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
-    joiningDate = json['joining_date'];
+    qrcode = json['qrcode'];
     team = json['team'] != null ? new Team.fromJson(json['team']) : null;
     if (json['photos'] != null) {
       photos = <Photos>[];
       json['photos'].forEach((v) {
         photos!.add(new Photos.fromJson(v));
+      });
+    }
+  
+    if (json['vclips'] != null) {
+      vclips = <Vclips>[];
+      json['vclips'].forEach((v) {
+        vclips!.add(new Vclips.fromJson(v));
       });
     }
   }
@@ -715,20 +728,25 @@ class UserModel with ChangeNotifier{
     data['league_name'] = this.leagueName;
     data['team_id'] = this.teamId;
     data['type'] = this.type;
-    data['qrcode'] = this.qrCode;
     data['token'] = this.token;
     data['otp'] = this.otp;
     data['user_type'] = this.userType;
     data['longitude'] = this.longitude;
     data['latitude'] = this.latitude;
+    data['qr_code'] = this.qrCode;
+    data['joining_date'] = this.joiningDate;
     data['created_at'] = this.createdAt;
     data['updated_at'] = this.updatedAt;
-    data['joining_date'] = this.joiningDate;
+    data['qrcode'] = this.qrcode;
     if (this.team != null) {
       data['team'] = this.team!.toJson();
     }
     if (this.photos != null) {
       data['photos'] = this.photos!.map((v) => v.toJson()).toList();
+    }
+   
+    if (this.vclips != null) {
+      data['vclips'] = this.vclips!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -839,7 +857,7 @@ class League {
   int? id;
   String? img;
   String? name;
-  String? active;
+  Null? active;
   String? createdAt;
   String? updatedAt;
 
@@ -903,6 +921,34 @@ class Photos {
     data['user_id'] = this.userId;
     data['name'] = this.name;
     data['caption'] = this.caption;
+    data['created_at'] = this.createdAt;
+    data['updated_at'] = this.updatedAt;
+    return data;
+  }
+}
+
+class Vclips {
+  int? id;
+  int? userId;
+  String? name;
+  String? createdAt;
+  String? updatedAt;
+
+  Vclips({this.id, this.userId, this.name, this.createdAt, this.updatedAt});
+
+  Vclips.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    userId = json['user_id'];
+    name = json['name'];
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['user_id'] = this.userId;
+    data['name'] = this.name;
     data['created_at'] = this.createdAt;
     data['updated_at'] = this.updatedAt;
     return data;

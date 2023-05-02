@@ -614,9 +614,41 @@ class ApiModel {
       return null;
     }
   }
+  static Future<dynamic> getweek() async {
+    String url = CONFIG.domain + CONFIG.getweek;
+    print(url);
+    try {
+      var response = await http.get(Uri.parse(url));
 
-  static Future<dynamic> getScorebyweek(String accessToken, String week) async {
-    String url = CONFIG.domain + CONFIG.getteamScorebyweek + week;
+      var res = convert.jsonDecode(response.body);
+      if (response.statusCode == 200) {
+        return res;
+      } else {
+        print(response.reasonPhrase);
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+ static Future<dynamic> getyear() async {
+    String url = CONFIG.domain + CONFIG.getYear;
+    print(url);
+    try {
+      var response = await http.get(Uri.parse(url));
+
+      var res = convert.jsonDecode(response.body);
+      if (response.statusCode == 200) {
+        return res;
+      } else {
+        print(response.reasonPhrase);
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  static Future<dynamic> getScorebyweek(String accessToken, String week,String year) async {
+    String url = CONFIG.domain + CONFIG.getteamScorebyweek + week+"/"+year;
     print(url);
     try {
       var response = await http.get(Uri.parse(url),

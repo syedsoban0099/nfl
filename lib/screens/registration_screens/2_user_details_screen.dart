@@ -385,7 +385,7 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
                                         padding:
                                             const EdgeInsets.only(left: 8.0),
                                         child: VariableText(
-                                          text: "Nationality",
+                                          text: "Countries",
                                           fontsize: size.height * 0.017,
                                           fontcolor:
                                               Theme.of(context).hintColor,

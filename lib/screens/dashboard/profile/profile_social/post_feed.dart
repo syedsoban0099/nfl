@@ -139,7 +139,7 @@ class _Post_FeedsState extends State<Post_Feeds> {
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Theme.of(context).primaryColor),
                       onPressed: () async {
-                        if (caption != null) {
+                        if (caption.text.trim()!= "") {
                           uploadUserImage(
                               image_post!.path, accessToken!, caption.text);
                         } else {
