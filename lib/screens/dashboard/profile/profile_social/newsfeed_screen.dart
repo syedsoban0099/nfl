@@ -85,21 +85,18 @@ class _NewsfeedScreenState extends State<NewsfeedScreen> {
         _getFeeds = GetFeeds.fromJson(item);
 
         feedsPhoto.add(_getFeeds);
-        // feedsuserimage.add(_getFeeds.user!.img!.toString());
-        // feedsusers.add(_getFeeds.user!.username!.toString());
-        // feedscommentscount.add(_getFeeds.comment![item].comment.toString());
-//  herosNameIdTeams.add(_herosName.id!.toString());
+      
 
       }
       setLoading(false);
       print(feedsPhoto.length);
-      // nationalId = leagueModel!.data![1]!.id.toString();
+    
       setState(() {});
     }
   }
 
   sendComment({String? content, String? id, String? photoId}) async {
-    // var userDetails = Provider.of<UserModel>(context, listen: false);
+    
     setMessageSending(true);
     //scrollToBottom();
     var response = await ApiModel.sendComment(
@@ -110,24 +107,7 @@ class _NewsfeedScreenState extends State<NewsfeedScreen> {
         // print(res);
         feedcomments.clear();
         _commentController.clear();
-        //  getfeedsphoto();
-//     if (response != null && response['status']) {
-//       for (var item in response['data']) {
-//         _getcomments = Comment.fromJson(item);
-
-//         feedcomments.add(_getcomments);
-//         // feedsuserimage.add(_getFeeds.user!.img!.toString());
-//         // feedsusers.add(_getFeeds.user!.username!.toString());
-//         // feedscommentscount.add(_getFeeds.comment![item].comment.toString());
-// //  herosNameIdTeams.add(_herosName.id!.toString());
-
-//       }
-
-//       print(feedsPhoto.length);
-//       // nationalId = leagueModel!.data![1]!.id.toString();
-//       setState(() {});
-//     }
-
+     
         setMessageSending(false);
       } else {
         setMessageSending(false);

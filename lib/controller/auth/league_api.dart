@@ -647,7 +647,7 @@ class ApiModel {
     }
   }
 
-  static Future<dynamic> getScorebyweek(String accessToken, String week,String year) async {
+  static Future<dynamic> getScorebyweek(String accessToken,String week,String year) async {
     String url = CONFIG.domain + CONFIG.getteamScorebyweek + week+"/"+year;
     print(url);
     try {

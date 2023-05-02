@@ -1209,42 +1209,48 @@ class _ProfileMainScreenState extends State<ProfileMainScreen>
                                             children: [
                                               SizedBox(
                                                   height: size.height * 0.03),
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceEvenly,
-                                                children: [
-                                                  InkWell(
-                                                    onTap: () {},
-                                                    child: Image.network(
-                                                      user.team!.img!,
-                                                      height:
-                                                          size.height * 0.07,
-                                                      width: size.width * 0.15,
-                                                      fit: BoxFit.fill,
-                                                    ),
-                                                  ),
-                                                  ClipRRect(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              100),
-                                                      child: Image.network(
-                                                        user.img!,
-                                                        height:
-                                                            size.height * 0.07,
-                                                        width:
-                                                            size.width * 0.15,
-                                                        fit: BoxFit.fill,
-                                                      )),
-                                                  Image.network(
-                                                    user.team!.category!.league!
-                                                        .img!,
-                                                    height: size.height * 0.04,
-                                                    width: size.width * 0.12,
-                                                    fit: BoxFit.fill,
-                                                  ),
-                                                ],
-                                              ),
+                                               Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                InkWell(
+                                  onTap: () {},
+                                  child: Image.network(
+                                    user.team!.img!,
+                                    height: size.height * 0.065,
+                                    width: size.width * 0.14,
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                                ClipRRect(
+                                    borderRadius: BorderRadius.circular(100),
+                                    child: Image.network(
+                                      user.img!,
+                                      height: size.height * 0.08,
+                                      width: size.width * 0.17,
+                                      fit: BoxFit.fill,
+                                    )),
+                                user.nationality == "Canadian"
+                                    ? Image.asset(
+                                        "assets/icons/canadaflag.png",
+                                        height: size.height * 0.04,
+                                        width: size.width * 0.12,
+                                        fit: BoxFit.fill,
+                                      )
+                                    : user.nationality == "American"
+                                        ? Image.asset(
+                                            "assets/icons/usaflag.png",
+                                            height: size.height * 0.04,
+                                            width: size.width * 0.12,
+                                            fit: BoxFit.fill,
+                                          )
+                                        : Image.asset(
+                                            "assets/icons/mexicoflag.png",
+                                            height: size.height * 0.04,
+                                            width: size.width * 0.12,
+                                            fit: BoxFit.fill,
+                                          ),
+                              ],
+                            ),
                                               SizedBox(
                                                   height: size.height * 0.01),
                                               Row(
@@ -1271,7 +1277,7 @@ class _ProfileMainScreenState extends State<ProfileMainScreen>
                                                       ),
                                                       VariableText(
                                                         text:
-                                                            "${user.city} ${user.nationality}/2023",
+                                                            "${user.city}, ${user.nationality}/ 2023",
                                                         fontsize:
                                                             size.height * 0.012,
                                                         fontcolor:
