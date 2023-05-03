@@ -38,11 +38,6 @@ class _UserProfileImageScreenState extends State<UserProfileImageScreen> {
 
   bool isLoading = false;
 
-  // TextEditingController userName = TextEditingController();
-  // TextEditingController name = TextEditingController();
-  // TextEditingController password = TextEditingController();
-  // TextEditingController city = TextEditingController();
-  // String? selectedGender;
   void setLoading(bool loading) {
     isLoading = loading;
     setState(() {
@@ -59,7 +54,7 @@ class _UserProfileImageScreenState extends State<UserProfileImageScreen> {
       token: password,
     );
     var response = await AuthenticationService().loginUser(user);
-    //  var res1 = await ApiModel().getTeam(.toString());
+
     if (response is Map) {
       if (response['status'].toString() == "true") {
         UserModel userModel = UserModel.fromJson(response['data']);
@@ -69,7 +64,7 @@ class _UserProfileImageScreenState extends State<UserProfileImageScreen> {
         teamId = userModel.teamId!;
         cardImage = userModel.cardImg!;
         accessToken = userModel.token!;
-         nickName=userModel.team!.nickName!;
+        nickName = userModel.team!.nickName!;
         // leagueImage=userModel.
         LocalPreference lp = LocalPreference();
 
@@ -253,22 +248,33 @@ class _UserProfileImageScreenState extends State<UserProfileImageScreen> {
                                         SizedBox(
                                           height: size.height * 0.04,
                                           child: leagueImage != null
-                                              ?  selectedNationality=="Canadian"?  Image.asset(
-                                  "assets/icons/canadaflag.png",
-                                  height: size.height * 0.04,
-                                  width: size.width * 0.12,
-                                  fit: BoxFit.fill,
-                                ):selectedNationality=="American"?Image.asset(
-                                  "assets/icons/usaflag.png",
-                                  height: size.height * 0.04,
-                                  width: size.width * 0.12,
-                                  fit: BoxFit.fill,
-                                ):Image.asset(
-                                  "assets/icons/mexicoflag.png",
-                                  height: size.height * 0.04,
-                                  width: size.width * 0.12,
-                                  fit: BoxFit.fill,
-                                )
+                                              ? selectedNationality ==
+                                                      "Canadian"
+                                                  ? Image.asset(
+                                                      "assets/icons/canadaflag.png",
+                                                      height:
+                                                          size.height * 0.04,
+                                                      width: size.width * 0.12,
+                                                      fit: BoxFit.fill,
+                                                    )
+                                                  : selectedNationality ==
+                                                          "American"
+                                                      ? Image.asset(
+                                                          "assets/icons/usaflag.png",
+                                                          height: size.height *
+                                                              0.04,
+                                                          width:
+                                                              size.width * 0.12,
+                                                          fit: BoxFit.fill,
+                                                        )
+                                                      : Image.asset(
+                                                          "assets/icons/mexicoflag.png",
+                                                          height: size.height *
+                                                              0.04,
+                                                          width:
+                                                              size.width * 0.12,
+                                                          fit: BoxFit.fill,
+                                                        )
                                               : Container(
                                                   width: size.width * 0.05,
                                                   child: Center(
@@ -291,7 +297,8 @@ class _UserProfileImageScreenState extends State<UserProfileImageScreen> {
                                     child: VariableText(
                                       text: name!.toUpperCase().toString(),
                                       fontsize: size.height * 0.018,
-                                      fontcolor: Theme.of(context).iconTheme.color,
+                                      fontcolor:
+                                          Theme.of(context).iconTheme.color,
                                       fontFamily: fontBold,
                                       weight: FontWeight.w700,
                                       textAlign: TextAlign.center,
@@ -304,9 +311,11 @@ class _UserProfileImageScreenState extends State<UserProfileImageScreen> {
                                   Align(
                                     alignment: Alignment.center,
                                     child: VariableText(
-                                      text:  "${'${nickName!.toUpperCase()} FAN'}",
+                                      text:
+                                          "${'${nickName!.toUpperCase()} FAN'}",
                                       fontsize: size.height * 0.010,
-                                      fontcolor: Theme.of(context).iconTheme.color,
+                                      fontcolor:
+                                          Theme.of(context).iconTheme.color,
                                       fontFamily: fontBold,
                                       weight: FontWeight.w500,
                                       textAlign: TextAlign.center,
@@ -356,22 +365,45 @@ class _UserProfileImageScreenState extends State<UserProfileImageScreen> {
                                           child: CircleAvatar(
                                               radius: 50,
                                               backgroundImage: AssetImage(
-                                              
                                                 "assets/icons/ic_profile1.png",
                                               ),
                                               // onBackgroundImageError: (e, s) {
                                               //   debugPrint(
                                               //       'image issue, $e,$s');
                                               // },
-                                              child:Text("") ),
+                                              child: Text("")),
                                         ),
                                         SizedBox(
                                           height: size.height * 0.04,
                                           width: size.width * 0.15,
                                           child: leagueImage != null
-                                              ? Image.network(
-                                                  leagueImage.toString(),
-                                                  height: size.height * 0.50)
+                                              ? selectedNationality ==
+                                                      "Canadian"
+                                                  ? Image.asset(
+                                                      "assets/icons/canadaflag.png",
+                                                      height:
+                                                          size.height * 0.04,
+                                                      width: size.width * 0.12,
+                                                      fit: BoxFit.fill,
+                                                    )
+                                                  : selectedNationality ==
+                                                          "American"
+                                                      ? Image.asset(
+                                                          "assets/icons/usaflag.png",
+                                                          height: size.height *
+                                                              0.04,
+                                                          width:
+                                                              size.width * 0.12,
+                                                          fit: BoxFit.fill,
+                                                        )
+                                                      : Image.asset(
+                                                          "assets/icons/mexicoflag.png",
+                                                          height: size.height *
+                                                              0.04,
+                                                          width:
+                                                              size.width * 0.12,
+                                                          fit: BoxFit.fill,
+                                                        )
                                               : Container(
                                                   width: size.width * 0.05,
                                                   child: Center(
@@ -394,7 +426,8 @@ class _UserProfileImageScreenState extends State<UserProfileImageScreen> {
                                     child: VariableText(
                                       text: name!.toUpperCase().toString(),
                                       fontsize: size.height * 0.020,
-                                      fontcolor: Theme.of(context).iconTheme.color,
+                                      fontcolor:
+                                          Theme.of(context).iconTheme.color,
                                       fontFamily: fontBold,
                                       weight: FontWeight.w700,
                                       textAlign: TextAlign.center,
@@ -407,9 +440,11 @@ class _UserProfileImageScreenState extends State<UserProfileImageScreen> {
                                   Align(
                                     alignment: Alignment.center,
                                     child: VariableText(
-                                      text:  "${'${nickName!.toUpperCase()} FAN'}",
+                                      text:
+                                          "${'${nickName!.toUpperCase()} FAN'}",
                                       fontsize: size.height * 0.012,
-                                      fontcolor: Theme.of(context).iconTheme.color,
+                                      fontcolor:
+                                          Theme.of(context).iconTheme.color,
                                       fontFamily: fontBold,
                                       weight: FontWeight.w500,
                                       textAlign: TextAlign.center,
@@ -499,7 +534,9 @@ class _UserProfileImageScreenState extends State<UserProfileImageScreen> {
                             fontSize: size.height * 0.018,
                             fontFamily: fontSemiBold,
                             weight: FontWeight.w500,
-                            txtColor: photoUploaded?Theme.of(context).iconTheme.color: textColor1,
+                            txtColor: photoUploaded
+                                ? Theme.of(context).iconTheme.color
+                                : textColor1,
                             onTap: () {
                               if (photoUploaded == false) {
                                 _getFromGallery();
