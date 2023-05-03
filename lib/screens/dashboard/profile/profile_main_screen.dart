@@ -379,9 +379,9 @@ class _ProfileMainScreenState extends State<ProfileMainScreen>
   void initState() {
     // playVideo();
 
-    getUserPhotos();
-    getAlbum();
-    getUserVid();
+    // getUserPhotos();
+    // getAlbum();
+    // getUserVid();
     Future.delayed(const Duration(seconds: 5), () {
       if (mounted) setState(() => getUserVid());
     });
@@ -1229,26 +1229,27 @@ class _ProfileMainScreenState extends State<ProfileMainScreen>
                                       width: size.width * 0.17,
                                       fit: BoxFit.fill,
                                     )),
-                                user.nationality == "Canadian"
+                                  user.nationality == "Canada"
                                     ? Image.asset(
                                         "assets/icons/canadaflag.png",
                                         height: size.height * 0.04,
                                         width: size.width * 0.12,
                                         fit: BoxFit.fill,
                                       )
-                                    : user.nationality == "American"
+                                    : user.nationality == "United States"
                                         ? Image.asset(
                                             "assets/icons/usaflag.png",
                                             height: size.height * 0.04,
                                             width: size.width * 0.12,
                                             fit: BoxFit.fill,
                                           )
-                                        : Image.asset(
+                                        : user.nationality == "Mexico"
+                                        ?Image.asset(
                                             "assets/icons/mexicoflag.png",
                                             height: size.height * 0.04,
                                             width: size.width * 0.12,
                                             fit: BoxFit.fill,
-                                          ),
+                                          ):Container(),
                               ],
                             ),
                                               SizedBox(
@@ -1276,7 +1277,7 @@ class _ProfileMainScreenState extends State<ProfileMainScreen>
                                                             TextAlign.center,
                                                       ),
                                                       VariableText(
-                                                        text:
+                                                        text:user.nationality=="United States"?"${user.city}, USA/ 2023":
                                                             "${user.city}, ${user.nationality}/ 2023",
                                                         fontsize:
                                                             size.height * 0.012,

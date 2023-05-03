@@ -249,7 +249,7 @@ class _UserProfileImageScreenState extends State<UserProfileImageScreen> {
                                           height: size.height * 0.04,
                                           child: leagueImage != null
                                               ? selectedNationality ==
-                                                      "Canadian"
+                                                      "Canada"
                                                   ? Image.asset(
                                                       "assets/icons/canadaflag.png",
                                                       height:
@@ -258,7 +258,7 @@ class _UserProfileImageScreenState extends State<UserProfileImageScreen> {
                                                       fit: BoxFit.fill,
                                                     )
                                                   : selectedNationality ==
-                                                          "American"
+                                                          "United States"
                                                       ? Image.asset(
                                                           "assets/icons/usaflag.png",
                                                           height: size.height *
@@ -267,14 +267,16 @@ class _UserProfileImageScreenState extends State<UserProfileImageScreen> {
                                                               size.width * 0.12,
                                                           fit: BoxFit.fill,
                                                         )
-                                                      : Image.asset(
+                                                      :  selectedNationality ==
+                                                          "Mexico"
+                                                      ?Image.asset(
                                                           "assets/icons/mexicoflag.png",
                                                           height: size.height *
                                                               0.04,
                                                           width:
                                                               size.width * 0.12,
                                                           fit: BoxFit.fill,
-                                                        )
+                                                        ):Container()
                                               : Container(
                                                   width: size.width * 0.05,
                                                   child: Center(
@@ -378,7 +380,7 @@ class _UserProfileImageScreenState extends State<UserProfileImageScreen> {
                                           width: size.width * 0.15,
                                           child: leagueImage != null
                                               ? selectedNationality ==
-                                                      "Canadian"
+                                                      "Canada"
                                                   ? Image.asset(
                                                       "assets/icons/canadaflag.png",
                                                       height:
@@ -387,7 +389,7 @@ class _UserProfileImageScreenState extends State<UserProfileImageScreen> {
                                                       fit: BoxFit.fill,
                                                     )
                                                   : selectedNationality ==
-                                                          "American"
+                                                          "United States"
                                                       ? Image.asset(
                                                           "assets/icons/usaflag.png",
                                                           height: size.height *
@@ -396,14 +398,16 @@ class _UserProfileImageScreenState extends State<UserProfileImageScreen> {
                                                               size.width * 0.12,
                                                           fit: BoxFit.fill,
                                                         )
-                                                      : Image.asset(
+                                                      :  selectedNationality ==
+                                                          "Mexico"
+                                                      ?Image.asset(
                                                           "assets/icons/mexicoflag.png",
                                                           height: size.height *
                                                               0.04,
                                                           width:
                                                               size.width * 0.12,
                                                           fit: BoxFit.fill,
-                                                        )
+                                                        ):Container()
                                               : Container(
                                                   width: size.width * 0.05,
                                                   child: Center(

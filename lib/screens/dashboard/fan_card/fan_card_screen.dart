@@ -356,26 +356,27 @@ class _FanCardScreenState extends State<FanCardScreen> {
                                       width: size.width * 0.17,
                                       fit: BoxFit.fill,
                                     )),
-                                user.nationality == "Canadian"
+                                user.nationality == "Canada"
                                     ? Image.asset(
                                         "assets/icons/canadaflag.png",
                                         height: size.height * 0.04,
                                         width: size.width * 0.12,
                                         fit: BoxFit.fill,
                                       )
-                                    : user.nationality == "American"
+                                    : user.nationality == "United States"
                                         ? Image.asset(
                                             "assets/icons/usaflag.png",
                                             height: size.height * 0.04,
                                             width: size.width * 0.12,
                                             fit: BoxFit.fill,
                                           )
-                                        : Image.asset(
+                                        : user.nationality == "Mexico"
+                                        ?Image.asset(
                                             "assets/icons/mexicoflag.png",
                                             height: size.height * 0.04,
                                             width: size.width * 0.12,
                                             fit: BoxFit.fill,
-                                          ),
+                                          ):Container(),
                               ],
                             ),
                             SizedBox(height: size.height * 0.01),
@@ -396,7 +397,7 @@ class _FanCardScreenState extends State<FanCardScreen> {
                                     ),
                                     VariableText(
                                       text:
-                                          "${user.city}, ${user.nationality == "Canadian" ? "Canada " : user.nationality == "American" ? "USA " : "Mexico "}/ 2023",
+                                          "${user.city}, ${user.nationality == "Canada" ? "Canada " : user.nationality == "United States" ? "USA " : "Mexico "}/ 2023",
                                       fontsize: size.height * 0.012,
                                       fontcolor:
                                           Theme.of(context).iconTheme.color,
